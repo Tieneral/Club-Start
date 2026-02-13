@@ -1,0 +1,50 @@
+CREATE TABLE Sportsmen (
+	sp_id INTEGER PRIMARY KEY AUTOINCREMENT, 
+	name TEXT NOT NULL, 
+	surname TEXT NOT NULL, 
+	last_name TEXT NOT NULL, 
+	birth datetime NOT NULL, 
+	parent_phone INTEGER(10) NOT NULL
+);
+CREATE TABLE Coaches (
+	co_id INTEGER PRIMARY KEY AUTOINCREMENT, 
+	name TEXT NOT NULL, 
+	surname TEXT NOT NULL, 
+	last_name TEXT NOT NULL,
+	specialization TEXT NOT NULL
+);
+CREATE TABLE Attendances (
+	at_id INTEGER PRIMARY KEY AUTOINCREMENT, 
+	sportsmen_id INTEGER,
+	coach_id INTEGER,
+	training_date date NOT NULL, 
+	attended TEXT NOT NULL CHECK(attended IN ('Был', 'Не был')),
+	FOREIGN KEY (sportsmen_id) REFERENCES Sportsmen(sp_id),
+	FOREIGN KEY (coach_id) REFERENCES Coaches(co_id)
+);
+=================================================================================
+-- Заполнение таблицы Sportsmen (спортсмены)
+INSERT INTO Sportsmen (name, surname, last_name, birth, parent_phone) VALUES 
+('Иван', 'Петров', 'Александрович', '2010-05-15', 9876543210),
+('Мария', 'Иванова', 'Сергеевна', '2011-08-22', 9123456789),
+('Алексей', 'Сидоров', 'Николаевич', '2009-03-10', 9234567890),
+('Елена', 'Козлова', 'Дмитриевна', '2012-11-30', 9345678901),
+('Дмитрий', 'Смирнов', 'Андреевич', '2010-07-18', 9456789012),
+('Анна', 'Волкова', 'Павловна', '2011-12-05', 9567890123),
+('Сергей', 'Морозов', 'Игоревич', '2008-09-14', 9678901234),
+('Ольга', 'Новикова', 'Алексеевна', '2010-04-25', 9789012345),
+('Павел', 'Зайцев', 'Владимирович', '2012-01-08', 9890123456),
+('Наталья', 'Белова', 'Максимовна', '2009-06-19', 9901234567);
+
+-- Заполнение таблицы Coaches (тренеры)
+INSERT INTO Coaches (name, surname, last_name, specialization) VALUES 
+('Александр', 'Федоров', 'Петрович', 'Легкая атлетика'),
+('Екатерина', 'Соколова', 'Ивановна', 'Плавание'),
+('Владимир', 'Михайлов', 'Сергеевич', 'Футбол'),
+('Татьяна', 'Кузнецова', 'Андреевна', 'Гимнастика'),
+('Андрей', 'Васильев', 'Николаевич', 'Баскетбол'),
+('Светлана', 'Попова', 'Дмитриевна', 'Теннис'),
+('Николай', 'Павлов', 'Алексеевич', 'Бокс'),
+('Юлия', 'Романова', 'Владимировна', 'Фигурное катание'),
+('Денис', 'Орлов', 'Максимович', 'Волейбол'),
+('Ирина', 'Ковалева', 'Сергеевна', 'Художественная гимнастика');
