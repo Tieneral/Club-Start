@@ -22,20 +22,20 @@ namespace Club_Start
         [DisplayName("Номер телефона родителя")]
         public string Parent_Phone { get; set; }
         
-        public static void LoadSportsmen(DataGridView dgv, string dbPath = "..\\..\\..\\ClubStart.db")
-        {
-            string connectionString = $"Data Source={dbPath};Version=3;";
-            using (var connection = new SQLiteConnection(connectionString))
-            {
-                connection.Open();
-                string query = "SELECT * FROM Sportsmen";
-                using (var adapter = new SQLiteDataAdapter(query, connection))
-                {
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-                    dgv.DataSource = dataTable;
-                }
-            }
-        }
+        //public static void LoadSportsmen(DataGridView dgv, string dbPath = "..\\..\\..\\ClubStart.db")
+        //{
+        //    string connectionString = $"Data Source={dbPath};Version=3;";
+        //    using (var connection = new SQLiteConnection(connectionString))
+        //    {
+        //        connection.Open();
+        //        string query = "SELECT * FROM Sportsmen";
+        //        using (var adapter = new SQLiteDataAdapter(query, connection))
+        //        {
+        //            DataTable dataTable = new DataTable();
+        //            adapter.Fill(dataTable);
+        //            dgv.DataSource = dataTable;
+        //        }
+        //    }
+        //}
     }
 }
