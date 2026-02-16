@@ -34,13 +34,13 @@ namespace Club_Start
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
             tabPage3 = new TabPage();
+            button1 = new Button();
             label3 = new Label();
             button3 = new Button();
             button2 = new Button();
             label2 = new Label();
             label1 = new Label();
             dgv = new DataGridView();
-            button1 = new Button();
             tableLayoutPanel1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage3.SuspendLayout();
@@ -59,7 +59,7 @@ namespace Club_Start
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(800, 450);
+            tableLayoutPanel1.Size = new Size(899, 598);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // tabControl1
@@ -71,7 +71,7 @@ namespace Club_Start
             tabControl1.Location = new Point(3, 3);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(214, 444);
+            tabControl1.Size = new Size(214, 592);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -79,7 +79,7 @@ namespace Club_Start
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(206, 416);
+            tabPage1.Size = new Size(206, 564);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "tabPage1";
             tabPage1.UseVisualStyleBackColor = true;
@@ -110,6 +110,17 @@ namespace Club_Start
             tabPage3.TabIndex = 2;
             tabPage3.Text = "tabPage3";
             // 
+            // button1
+            // 
+            button1.BackColor = Color.FromArgb(192, 255, 192);
+            button1.Location = new Point(60, 55);
+            button1.Name = "button1";
+            button1.Size = new Size(90, 50);
+            button1.TabIndex = 6;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
+            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -130,6 +141,7 @@ namespace Club_Start
             button3.TabIndex = 4;
             button3.Text = "button3";
             button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // button2
             // 
@@ -140,6 +152,7 @@ namespace Club_Start
             button2.TabIndex = 3;
             button2.Text = "button2";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // label2
             // 
@@ -170,28 +183,17 @@ namespace Club_Start
             dgv.Dock = DockStyle.Fill;
             dgv.Location = new Point(223, 3);
             dgv.Name = "dgv";
-            dgv.Size = new Size(574, 444);
+            dgv.Size = new Size(673, 592);
             dgv.TabIndex = 1;
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.FromArgb(192, 255, 192);
-            button1.Location = new Point(60, 55);
-            button1.Name = "button1";
-            button1.Size = new Size(90, 50);
-            button1.TabIndex = 6;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = false;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(899, 598);
             Controls.Add(tableLayoutPanel1);
             Name = "MainForm";
             Text = "Form1";
-            Load += MainForm_Load;
             tableLayoutPanel1.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
