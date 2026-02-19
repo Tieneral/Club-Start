@@ -33,6 +33,12 @@ namespace Club_Start
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
+            panel1 = new Panel();
+            tabControl2 = new TabControl();
+            tabPage4 = new TabPage();
+            button4 = new Button();
+            tabPage5 = new TabPage();
+            btnAddCoach = new Button();
             tabPage3 = new TabPage();
             button1 = new Button();
             label3 = new Label();
@@ -41,10 +47,18 @@ namespace Club_Start
             label2 = new Label();
             label1 = new Label();
             dgv = new DataGridView();
+            tabPage6 = new TabPage();
+            button5 = new Button();
             tableLayoutPanel1.SuspendLayout();
             tabControl1.SuspendLayout();
+            tabPage2.SuspendLayout();
+            panel1.SuspendLayout();
+            tabControl2.SuspendLayout();
+            tabPage4.SuspendLayout();
+            tabPage5.SuspendLayout();
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgv).BeginInit();
+            tabPage6.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -86,13 +100,76 @@ namespace Club_Start
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(panel1);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(206, 416);
+            tabPage2.Size = new Size(206, 564);
             tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
+            tabPage2.Text = "Добавление";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(tabControl2);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(3, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(200, 558);
+            panel1.TabIndex = 0;
+            // 
+            // tabControl2
+            // 
+            tabControl2.Controls.Add(tabPage4);
+            tabControl2.Controls.Add(tabPage5);
+            tabControl2.Controls.Add(tabPage6);
+            tabControl2.Location = new Point(1, 3);
+            tabControl2.Name = "tabControl2";
+            tabControl2.SelectedIndex = 0;
+            tabControl2.Size = new Size(198, 553);
+            tabControl2.TabIndex = 1;
+            // 
+            // tabPage4
+            // 
+            tabPage4.Controls.Add(button4);
+            tabPage4.Location = new Point(4, 24);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Padding = new Padding(3);
+            tabPage4.Size = new Size(190, 525);
+            tabPage4.TabIndex = 0;
+            tabPage4.Text = "Спортсмены";
+            tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(6, 22);
+            button4.Name = "button4";
+            button4.Size = new Size(178, 49);
+            button4.TabIndex = 0;
+            button4.Text = "Добавление спортсмена";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += btn4SportAdd_Click;
+            // 
+            // tabPage5
+            // 
+            tabPage5.Controls.Add(btnAddCoach);
+            tabPage5.Location = new Point(4, 24);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Padding = new Padding(3);
+            tabPage5.Size = new Size(190, 525);
+            tabPage5.TabIndex = 1;
+            tabPage5.Text = "Тренера";
+            tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // btnAddCoach
+            // 
+            btnAddCoach.Location = new Point(6, 22);
+            btnAddCoach.Name = "btnAddCoach";
+            btnAddCoach.Size = new Size(178, 49);
+            btnAddCoach.TabIndex = 0;
+            btnAddCoach.Text = "Добавить тренера";
+            btnAddCoach.UseVisualStyleBackColor = true;
+            btnAddCoach.Click += btnAddCoach_Click;
             // 
             // tabPage3
             // 
@@ -106,16 +183,16 @@ namespace Club_Start
             tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(206, 416);
+            tabPage3.Size = new Size(206, 564);
             tabPage3.TabIndex = 2;
-            tabPage3.Text = "tabPage3";
+            tabPage3.Text = "Просмотр";
             // 
             // button1
             // 
             button1.BackColor = Color.FromArgb(192, 255, 192);
-            button1.Location = new Point(60, 55);
+            button1.Location = new Point(26, 44);
             button1.Name = "button1";
-            button1.Size = new Size(90, 50);
+            button1.Size = new Size(158, 50);
             button1.TabIndex = 6;
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = false;
@@ -135,9 +212,9 @@ namespace Club_Start
             // button3
             // 
             button3.BackColor = Color.FromArgb(0, 192, 0);
-            button3.Location = new Point(60, 274);
+            button3.Location = new Point(26, 274);
             button3.Name = "button3";
-            button3.Size = new Size(90, 50);
+            button3.Size = new Size(158, 50);
             button3.TabIndex = 4;
             button3.Text = "button3";
             button3.UseVisualStyleBackColor = false;
@@ -146,9 +223,9 @@ namespace Club_Start
             // button2
             // 
             button2.BackColor = Color.Lime;
-            button2.Location = new Point(60, 159);
+            button2.Location = new Point(26, 159);
             button2.Name = "button2";
-            button2.Size = new Size(90, 50);
+            button2.Size = new Size(158, 50);
             button2.TabIndex = 3;
             button2.Text = "button2";
             button2.UseVisualStyleBackColor = false;
@@ -186,6 +263,26 @@ namespace Club_Start
             dgv.Size = new Size(673, 592);
             dgv.TabIndex = 1;
             // 
+            // tabPage6
+            // 
+            tabPage6.Controls.Add(button5);
+            tabPage6.Location = new Point(4, 24);
+            tabPage6.Name = "tabPage6";
+            tabPage6.Padding = new Padding(3);
+            tabPage6.Size = new Size(190, 525);
+            tabPage6.TabIndex = 2;
+            tabPage6.Text = "Посещения";
+            tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(6, 22);
+            button5.Name = "button5";
+            button5.Size = new Size(178, 49);
+            button5.TabIndex = 1;
+            button5.Text = "Добавить тренера";
+            button5.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -196,9 +293,15 @@ namespace Club_Start
             Text = "Form1";
             tableLayoutPanel1.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
+            tabPage2.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            tabControl2.ResumeLayout(false);
+            tabPage4.ResumeLayout(false);
+            tabPage5.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgv).EndInit();
+            tabPage6.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -221,5 +324,13 @@ namespace Club_Start
         private Button button2;
         private Label label2;
         private Button button1;
+        private Panel panel1;
+        private TabControl tabControl2;
+        private TabPage tabPage4;
+        private Button button4;
+        private TabPage tabPage5;
+        private Button btnAddCoach;
+        private TabPage tabPage6;
+        private Button button5;
     }
 }

@@ -20,6 +20,6 @@ namespace Club_Start
         [DisplayName("День рождения")]
         public DateTime Birth_Date { get; set; }
         [DisplayName("Номер телефона родителя")]
-        public int Parent_Phone { get; set; }
+        public string Parent_Phone { get; set; }
     }
 }

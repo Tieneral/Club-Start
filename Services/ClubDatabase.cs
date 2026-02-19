@@ -27,7 +27,7 @@ namespace Club_Start.Services
                     Surname = reader.IsDBNull(2) ? "" : reader.GetString(2),
                     Last_Name = reader.IsDBNull(3) ? "" : reader.GetString(3),
                     Birth_Date = reader.IsDBNull(4) ? DateTime.MinValue : reader.GetDateTime(4),
-                    Parent_Phone = reader.GetInt32(5)
+                    Parent_Phone = reader.GetString(5)
                 });
             }
 
