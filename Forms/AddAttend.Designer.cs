@@ -1,4 +1,7 @@
-﻿namespace Club_Start.Forms
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace Club_Start.Forms
 {
     partial class AddAttend
     {

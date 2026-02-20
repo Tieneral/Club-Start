@@ -1,4 +1,6 @@
-﻿namespace Club_Start.Add.Data
+﻿using System.Drawing;
+using System.Windows.Forms;
+namespace Club_Start.Add.Data
 {
     partial class AddCoach
     {
