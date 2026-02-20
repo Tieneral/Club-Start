@@ -32,6 +32,14 @@ namespace Club_Start
             tableLayoutPanel1 = new TableLayoutPanel();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            button7 = new Button();
+            label5 = new Label();
+            label8 = new Label();
+            label7 = new Label();
+            dtpEnd = new DateTimePicker();
+            dtpStart = new DateTimePicker();
+            button6 = new Button();
+            label4 = new Label();
             tabPage2 = new TabPage();
             panel1 = new Panel();
             tabControl2 = new TabControl();
@@ -39,6 +47,8 @@ namespace Club_Start
             button4 = new Button();
             tabPage5 = new TabPage();
             btnAddCoach = new Button();
+            tabPage6 = new TabPage();
+            btnAddAtten = new Button();
             tabPage3 = new TabPage();
             button1 = new Button();
             label3 = new Label();
@@ -47,18 +57,17 @@ namespace Club_Start
             label2 = new Label();
             label1 = new Label();
             dgv = new DataGridView();
-            tabPage6 = new TabPage();
-            button5 = new Button();
             tableLayoutPanel1.SuspendLayout();
             tabControl1.SuspendLayout();
+            tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
             panel1.SuspendLayout();
             tabControl2.SuspendLayout();
             tabPage4.SuspendLayout();
             tabPage5.SuspendLayout();
+            tabPage6.SuspendLayout();
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgv).BeginInit();
-            tabPage6.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -73,7 +82,7 @@ namespace Club_Start
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(899, 598);
+            tableLayoutPanel1.Size = new Size(1004, 709);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // tabControl1
@@ -85,18 +94,102 @@ namespace Club_Start
             tabControl1.Location = new Point(3, 3);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(214, 592);
+            tabControl1.Size = new Size(214, 703);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(button7);
+            tabPage1.Controls.Add(label5);
+            tabPage1.Controls.Add(label8);
+            tabPage1.Controls.Add(label7);
+            tabPage1.Controls.Add(dtpEnd);
+            tabPage1.Controls.Add(dtpStart);
+            tabPage1.Controls.Add(button6);
+            tabPage1.Controls.Add(label4);
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(206, 564);
+            tabPage1.Size = new Size(206, 675);
             tabPage1.TabIndex = 0;
-            tabPage1.Text = "tabPage1";
+            tabPage1.Text = "Представления";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            button7.BackColor = Color.Lime;
+            button7.Location = new Point(22, 321);
+            button7.Name = "button7";
+            button7.Size = new Size(158, 50);
+            button7.TabIndex = 18;
+            button7.Text = "button7";
+            button7.UseVisualStyleBackColor = false;
+            button7.Click += button7_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label5.Location = new Point(23, 271);
+            label5.Name = "label5";
+            label5.Size = new Size(158, 36);
+            label5.TabIndex = 17;
+            label5.Text = "Посмотреть таблицу \r\nАктивости ребёнка";
+            label5.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(23, 118);
+            label8.Name = "label8";
+            label8.Size = new Size(79, 15);
+            label8.TabIndex = 16;
+            label8.Text = "До этой даты";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(23, 68);
+            label7.Name = "label7";
+            label7.Size = new Size(78, 15);
+            label7.TabIndex = 15;
+            label7.Text = "От этой даты";
+            // 
+            // dtpEnd
+            // 
+            dtpEnd.Location = new Point(23, 136);
+            dtpEnd.Name = "dtpEnd";
+            dtpEnd.Size = new Size(165, 23);
+            dtpEnd.TabIndex = 14;
+            // 
+            // dtpStart
+            // 
+            dtpStart.Location = new Point(23, 86);
+            dtpStart.Name = "dtpStart";
+            dtpStart.Size = new Size(165, 23);
+            dtpStart.TabIndex = 13;
+            // 
+            // button6
+            // 
+            button6.BackColor = Color.FromArgb(192, 255, 192);
+            button6.Location = new Point(23, 179);
+            button6.Name = "button6";
+            button6.Size = new Size(158, 50);
+            button6.TabIndex = 8;
+            button6.Text = "button6";
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label4.Location = new Point(23, 16);
+            label4.Name = "label4";
+            label4.Size = new Size(158, 36);
+            label4.TabIndex = 7;
+            label4.Text = "Посмотреть таблицу \r\nПрогульшиков";
+            label4.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // tabPage2
             // 
@@ -104,7 +197,7 @@ namespace Club_Start
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(206, 564);
+            tabPage2.Size = new Size(206, 675);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Добавление";
             tabPage2.UseVisualStyleBackColor = true;
@@ -115,7 +208,7 @@ namespace Club_Start
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(3, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(200, 558);
+            panel1.Size = new Size(200, 669);
             panel1.TabIndex = 0;
             // 
             // tabControl2
@@ -171,6 +264,27 @@ namespace Club_Start
             btnAddCoach.UseVisualStyleBackColor = true;
             btnAddCoach.Click += btnAddCoach_Click;
             // 
+            // tabPage6
+            // 
+            tabPage6.Controls.Add(btnAddAtten);
+            tabPage6.Location = new Point(4, 24);
+            tabPage6.Name = "tabPage6";
+            tabPage6.Padding = new Padding(3);
+            tabPage6.Size = new Size(190, 525);
+            tabPage6.TabIndex = 2;
+            tabPage6.Text = "Посещения";
+            tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // btnAddAtten
+            // 
+            btnAddAtten.Location = new Point(6, 22);
+            btnAddAtten.Name = "btnAddAtten";
+            btnAddAtten.Size = new Size(178, 49);
+            btnAddAtten.TabIndex = 1;
+            btnAddAtten.Text = "Добавить посещение";
+            btnAddAtten.UseVisualStyleBackColor = true;
+            btnAddAtten.Click += button5_Click;
+            // 
             // tabPage3
             // 
             tabPage3.BackColor = Color.FromArgb(192, 255, 255);
@@ -183,7 +297,7 @@ namespace Club_Start
             tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(206, 564);
+            tabPage3.Size = new Size(206, 675);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Просмотр";
             // 
@@ -202,7 +316,7 @@ namespace Club_Start
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label3.Location = new Point(26, 235);
+            label3.Location = new Point(26, 210);
             label3.Name = "label3";
             label3.Size = new Size(158, 36);
             label3.TabIndex = 5;
@@ -212,7 +326,7 @@ namespace Club_Start
             // button3
             // 
             button3.BackColor = Color.FromArgb(0, 192, 0);
-            button3.Location = new Point(26, 274);
+            button3.Location = new Point(26, 249);
             button3.Name = "button3";
             button3.Size = new Size(158, 50);
             button3.TabIndex = 4;
@@ -223,7 +337,7 @@ namespace Club_Start
             // button2
             // 
             button2.BackColor = Color.Lime;
-            button2.Location = new Point(26, 159);
+            button2.Location = new Point(26, 148);
             button2.Name = "button2";
             button2.Size = new Size(158, 50);
             button2.TabIndex = 3;
@@ -235,7 +349,7 @@ namespace Club_Start
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label2.Location = new Point(26, 120);
+            label2.Location = new Point(26, 109);
             label2.Name = "label2";
             label2.Size = new Size(158, 36);
             label2.TabIndex = 2;
@@ -260,48 +374,30 @@ namespace Club_Start
             dgv.Dock = DockStyle.Fill;
             dgv.Location = new Point(223, 3);
             dgv.Name = "dgv";
-            dgv.Size = new Size(673, 592);
+            dgv.Size = new Size(778, 703);
             dgv.TabIndex = 1;
-            // 
-            // tabPage6
-            // 
-            tabPage6.Controls.Add(button5);
-            tabPage6.Location = new Point(4, 24);
-            tabPage6.Name = "tabPage6";
-            tabPage6.Padding = new Padding(3);
-            tabPage6.Size = new Size(190, 525);
-            tabPage6.TabIndex = 2;
-            tabPage6.Text = "Посещения";
-            tabPage6.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            button5.Location = new Point(6, 22);
-            button5.Name = "button5";
-            button5.Size = new Size(178, 49);
-            button5.TabIndex = 1;
-            button5.Text = "Добавить тренера";
-            button5.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(899, 598);
+            ClientSize = new Size(1004, 709);
             Controls.Add(tableLayoutPanel1);
             Name = "MainForm";
             Text = "Form1";
             tableLayoutPanel1.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tabPage1.PerformLayout();
             tabPage2.ResumeLayout(false);
             panel1.ResumeLayout(false);
             tabControl2.ResumeLayout(false);
             tabPage4.ResumeLayout(false);
             tabPage5.ResumeLayout(false);
+            tabPage6.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgv).EndInit();
-            tabPage6.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -331,6 +427,14 @@ namespace Club_Start
         private TabPage tabPage5;
         private Button btnAddCoach;
         private TabPage tabPage6;
-        private Button button5;
+        private Button btnAddAtten;
+        private Button button6;
+        private Label label4;
+        private Label label7;
+        private DateTimePicker dtpEnd;
+        private DateTimePicker dtpStart;
+        private Label label8;
+        private Button button7;
+        private Label label5;
     }
 }

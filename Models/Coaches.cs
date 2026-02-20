@@ -17,5 +17,10 @@ namespace Club_Start
         public string Last_Name { get; set; }
         [DisplayName("Специализация")]
         public string Specializtion { get; set; }
+
+        public override string ToString()
+        {
+            return Name + " " + Surname;
+        }
     }
 }

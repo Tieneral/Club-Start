@@ -8,6 +8,7 @@ namespace Club_Start
 {
     public class Attendances
     {
+        [Browsable(false)] 
         public int Id { get; set; }
 
         [DisplayName("Спортсмен")]

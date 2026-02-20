@@ -21,5 +21,11 @@ namespace Club_Start
         public DateTime Birth_Date { get; set; }
         [DisplayName("Номер телефона родителя")]
         public string Parent_Phone { get; set; }
+
+        public override string ToString()
+        {
+            return Name + " " + Surname;
+        }
     }
+
 }

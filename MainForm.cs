@@ -1,15 +1,19 @@
 using Club_Start.Add.Data;
 using Club_Start.Add.Data;
+using Club_Start.Forms;
 using Club_Start.Services;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Windows.Forms;
 
 namespace Club_Start
 {
     public partial class MainForm : Form
-    { 
-        private enum CurrentTable { Sportsmen, Coaches, Attendances }
+    {
+        private enum CurrentTable { Sportsmen, Coaches, Attendances, MissedAttendance, PizdykActivity }
         private CurrentTable _currentTable = CurrentTable.Sportsmen;
         public MainForm()
         {
@@ -73,6 +77,38 @@ namespace Club_Start
             {
                 e.SuppressKeyPress = true;
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            DateTime startDate = new DateTime(2024, 1, 1);
+            DateTime endDate = new DateTime(2024, 1, 31);
+
+            dgv.DataSource = ClubDatabase.GetMissedAttendances(startDate, endDate);
+            _currentTable = CurrentTable.MissedAttendance;
+            dgv.Focus();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            dgv.DataSource = ClubDatabase.PizdykActivity();
+            _currentTable = CurrentTable.PizdykActivity;
+            dgv.Focus();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            AddAttend addAttend = new AddAttend();
+            addAttend.FormClosing += AddAttend_FormClosing;
+            addAttend.ShowDialog();
+        }
+
+        private void AddAttend_FormClosing(object? sender, FormClosingEventArgs e)
+        {
+            List<Attendances>? attendances = dgv.DataSource as List<Attendances>;
+            attendances.Add(((AddAttend)sender).attend);
+            dgv.DataSource = null;
+            dgv.DataSource = attendances;
         }
     }
 }
