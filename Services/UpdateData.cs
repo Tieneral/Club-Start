@@ -34,6 +34,7 @@ namespace Club_Start.Services
                 cmd.Parameters.AddWithValue("@attended", attendedStr);
 
                 cmd.ExecuteNonQuery();
+                //ф
             }
         }
     }
