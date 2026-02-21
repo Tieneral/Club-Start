@@ -36,6 +36,8 @@ namespace Club_Start
             tableLayoutPanel1 = new TableLayoutPanel();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            button8 = new Button();
+            label6 = new Label();
             button7 = new Button();
             label5 = new Label();
             label8 = new Label();
@@ -61,8 +63,6 @@ namespace Club_Start
             label2 = new Label();
             label1 = new Label();
             dgv = new DataGridView();
-            label6 = new Label();
-            button8 = new Button();
             tableLayoutPanel1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -122,6 +122,28 @@ namespace Club_Start
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Представления";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            button8.BackColor = Color.FromArgb(0, 192, 0);
+            button8.Location = new Point(22, 470);
+            button8.Name = "button8";
+            button8.Size = new Size(158, 50);
+            button8.TabIndex = 20;
+            button8.Text = "Посмотреть";
+            button8.UseVisualStyleBackColor = false;
+            button8.Click += button8_Click;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label6.Location = new Point(6, 419);
+            label6.Name = "label6";
+            label6.Size = new Size(195, 36);
+            label6.TabIndex = 19;
+            label6.Text = "Посмотреть таблицу \r\nПосещаемости тренеровок\r\n";
+            label6.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // button7
             // 
@@ -385,28 +407,7 @@ namespace Club_Start
             dgv.Size = new Size(778, 703);
             dgv.TabIndex = 1;
             dgv.CellFormatting += dgv_CellFormatting;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label6.Location = new Point(6, 419);
-            label6.Name = "label6";
-            label6.Size = new Size(195, 36);
-            label6.TabIndex = 19;
-            label6.Text = "Посмотреть таблицу \r\nПосещаемости тренеровок\r\n";
-            label6.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // button8
-            // 
-            button8.BackColor = Color.FromArgb(0, 192, 0);
-            button8.Location = new Point(22, 470);
-            button8.Name = "button8";
-            button8.Size = new Size(158, 50);
-            button8.TabIndex = 20;
-            button8.Text = "Посмотреть";
-            button8.UseVisualStyleBackColor = false;
-            button8.Click += button8_Click;
+            dgv.CellValueChanged += dgv_CellValueChanged;
             // 
             // MainForm
             // 

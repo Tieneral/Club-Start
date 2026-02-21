@@ -20,6 +20,7 @@ namespace Club_Start
             InitializeComponent();
             dgv.KeyDown += dgv_KeyDown;
             dgv.CellFormatting += dgv_CellFormatting;
+            dgv.CellValueChanged += dgv_CellValueChanged;
 
         }
 
@@ -75,7 +76,6 @@ namespace Club_Start
             }
         }
 
-        // Общий обработчик для всех DataGridView
         private void dgv_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -104,7 +104,6 @@ namespace Club_Start
             }
         }
 
-        // Удаление спортсмена
         private void RowDeleteSportsmen(DataGridView dataGrid)
         {
             if (dataGrid.SelectedCells.Count == 0) return;
@@ -121,7 +120,6 @@ namespace Club_Start
             }
         }
 
-        // Удаление тренера
         private void RowDeleteCoach(DataGridView dataGrid)
         {
             if (dataGrid.SelectedCells.Count == 0) return;
@@ -137,7 +135,6 @@ namespace Club_Start
             }
         }
 
-        // Удаление записи о посещении
         private void RowDeleteAttendance(DataGridView dataGrid)
         {
             if (dataGrid.SelectedCells.Count == 0) return;
@@ -218,6 +215,22 @@ namespace Club_Start
             dgv.DataSource = ClubDatabase.CoachStatus();
             _currentTable = CurrentTable.CoachStats;
             dgv.Focus();
+        }
+
+        private void dgv_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            var dataGrid = (DataGridView)sender;
+            var row = dataGrid.Rows[e.RowIndex];
+            var data = row.DataBoundItem;
+            if (_currentTable == CurrentTable.Attendances)
+            {
+                if (data is Attendances attendance)
+                {
+                    UpdateData.UpdateDataInBase(attendance);
+                }
+            }
         }
     }
 }
