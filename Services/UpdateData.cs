@@ -17,7 +17,12 @@ namespace Club_Start.Services
             if (data is Attendances attendance)
             {
                 using var cmd = new SQLiteCommand(@"
-                    UPDATE Attendances SET sportsmen_id = @sportsmen_id,coach_id = @coach_id,training_date = @training_date, attended = @attended, WHERE at_id = @id", conn);                
+                    UPDATE Attendances 
+                    SET sportsmen_id = @sportsmen_id,
+                        coach_id = @coach_id,
+                        training_date = @training_date,
+                        attended = @attended
+                    WHERE at_id = @id", conn);
 
                 cmd.Parameters.AddWithValue("@id", attendance.Id);
                 cmd.Parameters.AddWithValue("@sportsmen_id", attendance.Sportsman_id?.Id ?? 0);
