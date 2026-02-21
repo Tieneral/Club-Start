@@ -184,5 +184,44 @@ namespace Club_Start.Services
 
             return pyzdykList;
         }
+
+        public static List<CoachStats> CoachStatus()
+        {
+            var CoachStatsList = new List<CoachStats>();
+
+            using var conn = new SQLiteConnection($"Data Source={ConnectionString}");
+            conn.Open();
+
+            string query = @"
+        SELECT 
+            co_id,
+            full_name,
+            specialization,
+            total_trainings_conducted,
+            total_attendances,
+            total_possible_attendances,
+            total_misses,
+            attendance_percentage
+        FROM CoachStats;";
+
+            using var cmd = new SQLiteCommand(query, conn);
+            using var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                CoachStatsList.Add(new CoachStats
+                {
+                    CoachID = Convert.ToInt32(reader["co_id"]),
+                    FullName = reader["full_name"]?.ToString() ?? "",
+                    Specialization = reader["specialization"]?.ToString() ?? "",
+                    TotalAttend = Convert.ToInt32(reader["total_trainings_conducted"]),
+                    TotalPossibleTraining = Convert.ToInt32(reader["total_attendances"]),
+                    AttendMisses = Convert.ToInt32(reader["total_misses"]),
+                    AttendPerc = Convert.ToDouble(reader["attendance_percentage"])
+                });
+            }
+
+            return CoachStatsList;
+        }
     }
 }

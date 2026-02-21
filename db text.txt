@@ -225,3 +225,19 @@ FROM Sportsmen s
 LEFT JOIN Attendances a ON s.sp_id = a.sportsmen_id
 GROUP BY s.sp_id, s.surname, s.name, s.last_name, s.birth, s.parent_phone
 ORDER BY attendance_percentage DESC;
+
+CREATE VIEW CoachStats AS
+SELECT 
+    c.co_id,
+    c.surname || ' ' || c.name || ' ' || c.last_name AS full_name,
+    c.specialization,
+    COUNT(DISTINCT a.training_date || a.coach_id) AS total_trainings_conducted,
+    SUM(CASE WHEN a.attended = 'Был' THEN 1 ELSE 0 END) AS total_attendances,
+    COUNT(a.at_id) AS total_possible_attendances,
+    SUM(CASE WHEN a.attended = 'Не был' THEN 1 ELSE 0 END) AS total_misses,
+    ROUND(100.0 * SUM(CASE WHEN a.attended = 'Был' THEN 1 ELSE 0 END) / 
+          NULLIF(COUNT(a.at_id), 0), 2) AS attendance_percentage
+FROM Coaches c
+LEFT JOIN Attendances a ON c.co_id = a.coach_id
+GROUP BY c.co_id, c.surname, c.name, c.last_name, c.specialization
+ORDER BY attendance_percentage DESC;

@@ -13,12 +13,14 @@ namespace Club_Start
 {
     public partial class MainForm : Form
     {
-        private enum CurrentTable { Sportsmen, Coaches, Attendances, MissedAttendance, PizdykActivity }
+        private enum CurrentTable { Sportsmen, Coaches, Attendances, MissedAttendance, PizdykActivity, CoachStats }
         private CurrentTable _currentTable = CurrentTable.Sportsmen;
         public MainForm()
         {
             InitializeComponent();
             dgv.KeyDown += dgv_KeyDown;
+            dgv.CellFormatting += dgv_CellFormatting;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -28,7 +30,7 @@ namespace Club_Start
             dgv.Focus();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             dgv.DataSource = ClubDatabase.GetCoaches();
             _currentTable = CurrentTable.Coaches;
@@ -42,7 +44,7 @@ namespace Club_Start
             dgv.Focus();
         }
 
-        private void btn4SportAdd_Click(object sender, EventArgs e)
+        private void Btn4SportAdd_Click(object sender, EventArgs e)
         {
             var addForm = new Club_Start.Add.Data.AddSportsmenInBase();
             addForm.FormClosing += AddSportsmen_FormClosing;
@@ -50,13 +52,14 @@ namespace Club_Start
         }
         private void AddSportsmen_FormClosing(object sender, FormClosingEventArgs e)
         {
-            List<Sportsmens>? sportsmens = dgv.DataSource as List<Sportsmens>;
-            sportsmens.Add(((AddSportsmenInBase)sender).sportsmens);
-            dgv.DataSource = null;
-            dgv.DataSource = sportsmens;
+            if (_currentTable == CurrentTable.Sportsmen)
+            {
+                dgv.DataSource = null;
+                dgv.DataSource = ClubDatabase.GetSportsmens();
+            }
         }
 
-        private void btnAddCoach_Click(object sender, EventArgs e)
+        private void BtnAddCoach_Click(object sender, EventArgs e)
         {
             AddCoach addCoach = new AddCoach();
             addCoach.FormClosing += AddCoach_FormClosing;
@@ -65,21 +68,92 @@ namespace Club_Start
 
         private void AddCoach_FormClosing(object? sender, FormClosingEventArgs e)
         {
-            List<Coaches>? coaches = dgv.DataSource as List<Coaches>;
-            coaches.Add(((AddCoach)sender).coach);
-            dgv.DataSource = null;
-            dgv.DataSource = coaches;
-        }
-
-        private void dgv_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Delete)
+            if (_currentTable == CurrentTable.Coaches)
             {
-                e.SuppressKeyPress = true;
+                dgv.DataSource = null;
+                dgv.DataSource = ClubDatabase.GetCoaches();
             }
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        // Общий обработчик для всех DataGridView
+        private void dgv_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Delete:
+                    // Определяем, какую таблицу сейчас показываем
+                    switch (_currentTable)
+                    {
+                        case CurrentTable.Sportsmen:
+                            RowDeleteSportsmen(sender as DataGridView);
+                            break;
+                        case CurrentTable.Coaches:
+                            RowDeleteCoach(sender as DataGridView);
+                            break;
+                        case CurrentTable.Attendances:
+                            RowDeleteAttendance(sender as DataGridView);
+                            break;
+                        case CurrentTable.CoachStats:
+                        case CurrentTable.PizdykActivity:
+                        case CurrentTable.MissedAttendance:
+                            MessageBox.Show("Это представление только для чтения", "Информация",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            break;
+                    }
+                    break;
+            }
+        }
+
+        // Удаление спортсмена
+        private void RowDeleteSportsmen(DataGridView dataGrid)
+        {
+            if (dataGrid.SelectedCells.Count == 0) return;
+
+            int rowIndex = dataGrid.SelectedCells[0].RowIndex;
+            var row = dataGrid.Rows[rowIndex];
+
+            // Получаем объект Sportsmens из строки
+            var sportsman = row.DataBoundItem as Sportsmens;
+            if (sportsman != null)
+            {
+                DeleteData.RemoveSportsman(sportsman.Id);
+                dataGrid.DataSource = ClubDatabase.GetSportsmens();
+            }
+        }
+
+        // Удаление тренера
+        private void RowDeleteCoach(DataGridView dataGrid)
+        {
+            if (dataGrid.SelectedCells.Count == 0) return;
+
+            int rowIndex = dataGrid.SelectedCells[0].RowIndex;
+            var row = dataGrid.Rows[rowIndex];
+
+            var coach = row.DataBoundItem as Coaches;
+            if (coach != null)
+            {
+                DeleteData.RemoveCoach(coach.Id);
+                dataGrid.DataSource = ClubDatabase.GetCoaches();
+            }
+        }
+
+        // Удаление записи о посещении
+        private void RowDeleteAttendance(DataGridView dataGrid)
+        {
+            if (dataGrid.SelectedCells.Count == 0) return;
+
+            int rowIndex = dataGrid.SelectedCells[0].RowIndex;
+            var row = dataGrid.Rows[rowIndex];
+
+            var attendance = row.DataBoundItem as Attendances;
+            if (attendance != null)
+            {
+                DeleteData.RemoveAttendance(attendance.Id);
+                dataGrid.DataSource = ClubDatabase.GetAttendances();
+            }
+        }
+
+        private void Button6_Click(object sender, EventArgs e)
         {
             DateTime startDate = new DateTime(2024, 1, 1);
             DateTime endDate = new DateTime(2024, 1, 31);
@@ -105,10 +179,45 @@ namespace Club_Start
 
         private void AddAttend_FormClosing(object? sender, FormClosingEventArgs e)
         {
-            List<Attendances>? attendances = dgv.DataSource as List<Attendances>;
-            attendances.Add(((AddAttend)sender).attend);
-            dgv.DataSource = null;
-            dgv.DataSource = attendances;
+            if (_currentTable == CurrentTable.Attendances)
+            {
+                dgv.DataSource = null;
+                dgv.DataSource = ClubDatabase.GetAttendances();
+            }
+        }
+
+        private void dgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (_currentTable == CurrentTable.Sportsmen && dgv.Columns[e.ColumnIndex].Name == "Parent_Phone")
+            {
+                if (e.Value != null)
+                {
+                    string originalValue = e.Value.ToString();
+                    string digits = "";
+                    foreach (char c in originalValue)
+                    {
+                        if (char.IsDigit(c))
+                            digits += c;
+                    }
+
+                    if (digits.Length >= 10)
+                    {
+                        if (digits.Length > 10)
+                            digits = digits.Substring(digits.Length - 10);
+
+                        e.Value = $"+7 ({digits.Substring(0, 3)}) {digits.Substring(3)}";
+                        e.FormattingApplied = true;
+                    }
+                }
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            dgv.Columns.Clear();
+            dgv.DataSource = ClubDatabase.CoachStatus();
+            _currentTable = CurrentTable.CoachStats;
+            dgv.Focus();
         }
     }
 }

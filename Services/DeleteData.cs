@@ -10,6 +10,16 @@ namespace Club_Start.Services
 {
     class DeleteData
     {
+        public static void RemoveAttendance(int id)
+        {
+            using var conn = new SQLiteConnection($"Data Source={ClubDatabase.ConnectionString}");
+            conn.Open();
+
+            using var cmd = new SQLiteCommand("DELETE FROM Attendances WHERE at_id = @id", conn);
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.ExecuteNonQuery();
+        }
+
         public static void RemoveSportsman(int id)
         {
             using var conn = new SQLiteConnection($"Data Source={ClubDatabase.ConnectionString}");
@@ -19,22 +29,13 @@ namespace Club_Start.Services
             cmd.Parameters.AddWithValue("@id", id);
             cmd.ExecuteNonQuery();
         }
+
         public static void RemoveCoach(int id)
         {
             using var conn = new SQLiteConnection($"Data Source={ClubDatabase.ConnectionString}");
             conn.Open();
 
             using var cmd = new SQLiteCommand("DELETE FROM Coaches WHERE co_id = @id", conn);
-            cmd.Parameters.AddWithValue("@id", id);
-            cmd.ExecuteNonQuery();
-        }
-
-        public static void RemoveAttendance(int id)
-        {
-            using var conn = new SQLiteConnection($"Data Source={ClubDatabase.ConnectionString}");
-            conn.Open();
-
-            using var cmd = new SQLiteCommand("DELETE FROM Attendances WHERE at_id = @id", conn);
             cmd.Parameters.AddWithValue("@id", id);
             cmd.ExecuteNonQuery();
         }

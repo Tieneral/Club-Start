@@ -61,6 +61,8 @@ namespace Club_Start
             label2 = new Label();
             label1 = new Label();
             dgv = new DataGridView();
+            label6 = new Label();
+            button8 = new Button();
             tableLayoutPanel1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -103,6 +105,8 @@ namespace Club_Start
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(button8);
+            tabPage1.Controls.Add(label6);
             tabPage1.Controls.Add(button7);
             tabPage1.Controls.Add(label5);
             tabPage1.Controls.Add(label8);
@@ -126,7 +130,7 @@ namespace Club_Start
             button7.Name = "button7";
             button7.Size = new Size(158, 50);
             button7.TabIndex = 18;
-            button7.Text = "button7";
+            button7.Text = "Посмотреть";
             button7.UseVisualStyleBackColor = false;
             button7.Click += button7_Click;
             // 
@@ -180,9 +184,9 @@ namespace Club_Start
             button6.Name = "button6";
             button6.Size = new Size(158, 50);
             button6.TabIndex = 8;
-            button6.Text = "button6";
+            button6.Text = "Посмотреть";
             button6.UseVisualStyleBackColor = false;
-            button6.Click += button6_Click;
+            button6.Click += Button6_Click;
             // 
             // label4
             // 
@@ -245,7 +249,7 @@ namespace Club_Start
             button4.TabIndex = 0;
             button4.Text = "Добавление спортсмена";
             button4.UseVisualStyleBackColor = true;
-            button4.Click += btn4SportAdd_Click;
+            button4.Click += Btn4SportAdd_Click;
             // 
             // tabPage5
             // 
@@ -266,7 +270,7 @@ namespace Club_Start
             btnAddCoach.TabIndex = 0;
             btnAddCoach.Text = "Добавить тренера";
             btnAddCoach.UseVisualStyleBackColor = true;
-            btnAddCoach.Click += btnAddCoach_Click;
+            btnAddCoach.Click += BtnAddCoach_Click;
             // 
             // tabPage6
             // 
@@ -312,7 +316,7 @@ namespace Club_Start
             button1.Name = "button1";
             button1.Size = new Size(158, 50);
             button1.TabIndex = 6;
-            button1.Text = "button1";
+            button1.Text = "Посмотреть";
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
@@ -334,7 +338,7 @@ namespace Club_Start
             button3.Name = "button3";
             button3.Size = new Size(158, 50);
             button3.TabIndex = 4;
-            button3.Text = "button3";
+            button3.Text = "Посмотреть";
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
@@ -345,9 +349,9 @@ namespace Club_Start
             button2.Name = "button2";
             button2.Size = new Size(158, 50);
             button2.TabIndex = 3;
-            button2.Text = "button2";
+            button2.Text = "Посмотреть";
             button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            button2.Click += Button2_Click;
             // 
             // label2
             // 
@@ -380,6 +384,29 @@ namespace Club_Start
             dgv.Name = "dgv";
             dgv.Size = new Size(778, 703);
             dgv.TabIndex = 1;
+            dgv.CellFormatting += dgv_CellFormatting;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Tahoma", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label6.Location = new Point(6, 419);
+            label6.Name = "label6";
+            label6.Size = new Size(195, 36);
+            label6.TabIndex = 19;
+            label6.Text = "Посмотреть таблицу \r\nПосещаемости тренеровок\r\n";
+            label6.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // button8
+            // 
+            button8.BackColor = Color.FromArgb(0, 192, 0);
+            button8.Location = new Point(22, 470);
+            button8.Name = "button8";
+            button8.Size = new Size(158, 50);
+            button8.TabIndex = 20;
+            button8.Text = "Посмотреть";
+            button8.UseVisualStyleBackColor = false;
+            button8.Click += button8_Click;
             // 
             // MainForm
             // 
@@ -440,5 +467,7 @@ namespace Club_Start
         private Label label8;
         private Button button7;
         private Label label5;
+        private Button button8;
+        private Label label6;
     }
 }
